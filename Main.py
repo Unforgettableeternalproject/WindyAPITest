@@ -3,15 +3,17 @@ import Functions.Windy as Windy
 import Functions.Electicity as Electicity
 import time
 
-files = []
-#每小時行程
-init = int(time.strftime('%H', time.localtime())-1)
-runtime = 0
 #初始化
+files = []
+init = int(time.strftime('%H', time.localtime()))-1
+runtime = 0
+index = 0
 
 while runtime != init:
+    
+    #迴圈每小時執行一次
     file = []
-    runtime = int(time.strftime('%H', time.localtime()))
+    
     #時間
     date = time.strftime('%m/%d %H:%M', time.localtime())
     file.append(date)
@@ -29,6 +31,13 @@ while runtime != init:
 
     #整合
     files.append(file)
+    
+    #告知主控端
+    runtime = int(time.strftime('%H', time.localtime()))
+    index += 1
+    print("Current Time: " + time.strftime('%y/%m/%d %H:%M', time.localtime()) + f"\nFetching Operation Had Done {index} Time(s).\n\n")
+    
+    #等待
     time.sleep(3600)
 
 wb = openpyxl.Workbook()
