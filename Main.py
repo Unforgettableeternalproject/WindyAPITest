@@ -1,30 +1,32 @@
 import openpyxl
 import Functions.Windy as Windy
 import Functions.Electicity as Electicity
+import os.path
+from os import path
 import time
 
 #初始化
 files = []
-init = int(time.strftime('%H', time.localtime()))-1
-runtime = 0
 index = 0
-print("Program initiating...\nEnter arguments(Leave blank for default):\n\nFilename: ", end="")
+print("Program initiating...\nEnter arguments:\n\nFilename(Leave blank for default): ", end="")
 filename = input()
 if(filename == ""): 
-    filename = "第十組觀測資料"
+    filename = "\b第十組觀測資料"
     print(filename, end="")
 
 print("\nAssumed run cycle count: ", end="")
-cycle = int(input())
-if(cycle == ""):
+try:
+    cycle = int(input())
+except ValueError:
     cycle = 10
-    print(cycle, end="")
+    print("Must be integer input! Used default settings instead.")
 
 print("\nAssumed run gap(seconds): ", end="")
-gap = int(input())
-if(gap == ""):
+try:
+    gap = int(input())
+except ValueError:
     gap = 10
-    print(gap, end = "")
+    print("Must be integer input! Used default settings instead.")
 
 print("\n\nArgument accepted, running program...\n")
 
@@ -68,16 +70,18 @@ sheet.append(titles)
  
 for file in files:
 	sheet.append(file)
-sheet.append("windyAPI designed by Bernie.")
+
+copyright = ["windyAPI designed by Bernie."]
+sheet.append(copyright)
 #輸出
 print("Attempting to save the data as .xlsx file...")
 
 try:
- wb.save(filename + ".xlsx")
- print("Saving process compeleted.")
-except:
- wb.save(f"{time.strftime('%m/%d %H:%M', time.localtime())}.xlsx")
- print(f"Error occured when saving, backup saved into {time.strftime('%m/%d %H:%M', time.localtime())}.xlsx instead.")
+    wb.save(filename + ".xlsx")
+    print("Saving process compeleted.")
+except Exception as e:
+    wb.save(f"{time.strftime('%m_%d-%H_%M', time.localtime())}.xlsx")
+    print(f"Error occured when saving, backup saved into {time.strftime('%m_%d-%H_%M', time.localtime())}.xlsx instead.")
 
- print("\n\nProgram closing...")
+print("\n\nProgram closing...")
 
