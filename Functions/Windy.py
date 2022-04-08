@@ -11,8 +11,7 @@ class wind:
                     "model": "gfs",
                     "parameters": ["wind"],
                     "levels": ["950h"],
-                    "key": "JdhDvmUgYdlabcxz9fzobkQDNGc4MbMz"
-                    }
+                    "key": "JdhDvmUgYdlabcxz9fzobkQDNGc4MbMz"}
         self.header = {"Content-Type" :"application/json"}
         self.s = requests.post("https://api.windy.com/api/point-forecast/v2", json = self.data, headers = self.header)
         return self.s.text

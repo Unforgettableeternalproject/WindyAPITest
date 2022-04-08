@@ -1,8 +1,7 @@
 import openpyxl
 import Functions.Windy as Windy
 import Functions.Electicity as Electicity
-import os.path
-from os import path
+import os
 import time
 
 #初始化
@@ -11,7 +10,7 @@ index = 0
 print("Program initiating...\nEnter arguments:\n\nFilename(Leave blank for default): ", end="")
 filename = input()
 if(filename == ""): 
-    filename = "\b第十組觀測資料"
+    filename = "第十組觀測資料"
     print(filename, end="")
 
 print("\nAssumed run cycle count: ", end="")
@@ -25,12 +24,13 @@ print("\nAssumed run gap(seconds): ", end="")
 try:
     gap = int(input())
 except ValueError:
-    gap = 10
+    gap = 13
     print("Must be integer input! Used default settings instead.")
-
+if(gap > 12): gap -= 12
+elif(gap <= 12): gap = 0
 print("\n\nArgument accepted, running program...\n")
 
-while cycle != 0:
+while True:
     
     #迴圈每小時執行一次
     file = []
@@ -57,10 +57,16 @@ while cycle != 0:
     runtime = int(time.strftime('%H', time.localtime()))
     cycle -= 1
     index += 1
-    print("Current Time: " + time.strftime('%Y/%m/%d %H:%M', time.localtime()) + f"\nFetching Operation Had Done {index} Time(s).\n\n")
-    
+    print("Current Time: " + time.strftime('%Y/%m/%d %H:%M:%S', time.localtime()) + f"\nFetching Operation Had Done {index} Time(s).\n\n")
+    if(cycle == 0): break;
+
     #等待
     time.sleep(gap)
+
+basepath = os.path.dirname(os.path.realpath(__file__))
+
+jpgimagepath = os.path.join(
+        basepath, '../Instance', filename + ".xlsx")
 
 wb = openpyxl.Workbook()
 sheet = wb.create_sheet(filename, 0)
@@ -73,15 +79,18 @@ for file in files:
 
 copyright = ["windyAPI designed by Bernie."]
 sheet.append(copyright)
+
 #輸出
 print("Attempting to save the data as .xlsx file...")
+excelpath = os.path.join(basepath, 'Instance', filename + ".xlsx")
 
 try:
-    wb.save(filename + ".xlsx")
+    wb.save(excelpath)
     print("Saving process compeleted.")
 except Exception as e:
-    wb.save(f"{time.strftime('%m_%d-%H_%M', time.localtime())}.xlsx")
-    print(f"Error occured when saving, backup saved into {time.strftime('%m_%d-%H_%M', time.localtime())}.xlsx instead.")
+    excelpath = os.path.join(basepath, 'Instance', f"{time.strftime('%m_%d-%H_%M', time.localtime())}.xlsx")
+    wb.save(excelpath)
+    print(f"Error occured when saving, backup saved into {excelpath} instead.")
 
 print("\n\nProgram closing...")
 

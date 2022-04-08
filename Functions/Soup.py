@@ -1,5 +1,4 @@
 import requests
-from bs4 import BeautifulSoup
 
 f = open("output.txt", 'w', encoding= "utf-8")
 
