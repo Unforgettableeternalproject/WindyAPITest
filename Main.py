@@ -8,26 +8,26 @@ import time
 files = []
 index = 0
 print("Program initiating...\nEnter arguments:\n\nFilename(Leave blank for default): ", end="")
-filename = input()
+filename = "測試"#input()
 if(filename == ""): 
     filename = "第十組觀測資料"
     print(filename, end="")
 
 print("\nAssumed run cycle count: ", end="")
 try:
-    cycle = int(input())
+    cycle = 10#int(input())
 except ValueError:
     cycle = 10
     print("Must be integer input! Used default settings instead.")
 
 print("\nAssumed run gap(seconds): ", end="")
 try:
-    gap = int(input())
+    gap = 13#int(input())
 except ValueError:
     gap = 13
     print("Must be integer input! Used default settings instead.")
     
-copyright = ["windyAPI designed by Bernie.", f"Runned cycles:{cycle}", f"Time gaps:{gap}"]
+copyright = ["windyAPI designed by Bernie.", f"Runned cycles:{cycle}", f"Time gaps:{gap}(s)"]
 if(gap > 12): gap -= 12
 elif(gap <= 12): gap = 0
 print("\n\nArgument accepted, running program...\n")
@@ -74,7 +74,7 @@ jpgimagepath = os.path.join(
 wb = openpyxl.Workbook()
 sheet = wb.create_sheet(filename, 0)
     
-titles = ("紀錄時間                             ", "淨發電量        ", "發電量比     ", "風速", "風向")
+titles = ("紀錄時間", "淨發電量", "發電量比", "風速", "風向")
 sheet.append(titles)
  
 for file in files:

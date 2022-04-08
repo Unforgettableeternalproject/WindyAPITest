@@ -6,8 +6,8 @@ class wind:
         pass
     
     def fetch(self):
-        self.data = {"lat": 23.38,
-                    "lon": 120.08,
+        self.data = {"lat": 23.633333,
+                    "lon":  120.133333,
                     "model": "gfs",
                     "parameters": ["wind"],
                     "levels": ["950h"],
@@ -46,14 +46,14 @@ class wind:
     def calculate(self, nwu, nwv):
         self.dir = ''
         self.fws = 0
-        if(nwu > 0 and nwv > 0): self.dir = "SouthWest"
-        if(nwu > 0 and nwv < 0): self.dir = "NorthWest"
-        if(nwu < 0 and nwv > 0): self.dir = "SouthEast"
-        if(nwu < 0 and nwv < 0): self.dir = "NorthEast"
-        if(nwu > 0 and nwv == 0): self.dir = "West"
-        if(nwu < 0 and nwv == 0): self.dir = "East"
-        if(nwu == 0 and nwv > 0): self.dir = "South"
-        if(nwu == 0 and nwv < 0): self.dir = "North"
+        if(nwu > 0 and nwv > 0): self.dir = "SouthWest↗"
+        if(nwu > 0 and nwv < 0): self.dir = "NorthWest↘"
+        if(nwu < 0 and nwv > 0): self.dir = "SouthEast↖"
+        if(nwu < 0 and nwv < 0): self.dir = "NorthEast↙"
+        if(nwu > 0 and nwv == 0): self.dir = "West→"
+        if(nwu < 0 and nwv == 0): self.dir = "East←"
+        if(nwu == 0 and nwv > 0): self.dir = "South↑"
+        if(nwu == 0 and nwv < 0): self.dir = "North↓"
 
         self.fws = round(math.sqrt(nwu**2+nwv**2), 2)
         return str(self.fws) + "m/s", self.dir
