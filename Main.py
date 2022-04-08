@@ -26,9 +26,12 @@ try:
 except ValueError:
     gap = 13
     print("Must be integer input! Used default settings instead.")
+    
+copyright = ["windyAPI designed by Bernie.", f"Runned cycles:{cycle}", f"Time gaps:{gap}"]
 if(gap > 12): gap -= 12
 elif(gap <= 12): gap = 0
 print("\n\nArgument accepted, running program...\n")
+
 
 while True:
     
@@ -58,7 +61,7 @@ while True:
     cycle -= 1
     index += 1
     print("Current Time: " + time.strftime('%Y/%m/%d %H:%M:%S', time.localtime()) + f"\nFetching Operation Had Done {index} Time(s).\n\n")
-    if(cycle == 0): break;
+    if(cycle == 0): break
 
     #等待
     time.sleep(gap)
@@ -71,13 +74,12 @@ jpgimagepath = os.path.join(
 wb = openpyxl.Workbook()
 sheet = wb.create_sheet(filename, 0)
     
-titles = ("紀錄時間", "淨發電量", "發電量比", "風速", "風向")
+titles = ("紀錄時間                             ", "淨發電量        ", "發電量比     ", "風速", "風向")
 sheet.append(titles)
  
 for file in files:
 	sheet.append(file)
 
-copyright = ["windyAPI designed by Bernie."]
 sheet.append(copyright)
 
 #輸出
