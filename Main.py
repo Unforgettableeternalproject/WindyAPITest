@@ -8,21 +8,21 @@ import time
 files = []
 index = 0
 print("Program initiating...\nEnter arguments:\n\nFilename(Leave blank for default): ", end="")
-filename = "測試"#input()
+filename = input()
 if(filename == ""): 
     filename = "第十組觀測資料"
     print(filename, end="")
 
 print("\nAssumed run cycle count: ", end="")
 try:
-    cycle = 10#int(input())
+    cycle = int(input())
 except ValueError:
     cycle = 10
     print("Must be integer input! Used default settings instead.")
 
 print("\nAssumed run gap(seconds): ", end="")
 try:
-    gap = 13#int(input())
+    gap = int(input())
 except ValueError:
     gap = 13
     print("Must be integer input! Used default settings instead.")
