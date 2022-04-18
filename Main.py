@@ -98,3 +98,4 @@ except Exception as e:
 
 print("\n\nProgram closing...")
 
+os.system("pause")
