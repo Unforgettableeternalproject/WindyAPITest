@@ -28,9 +28,12 @@ try:
 except ValueError:
     gap = 13
     print("Must be integer input! Used default settings instead.")
+    
+copyright = ["windyAPI designed by Bernie.", f"Runned cycles:{cycle}", f"Time gaps:{gap}(s)"]
 if(gap > 12): gap -= 12
 elif(gap <= 12): gap = 0
 print("\n\nArgument accepted, running program...\n")
+
 
 while True:
     
@@ -79,7 +82,6 @@ sheet.append(titles)
 for file in files:
 	sheet.append(file)
 
-copyright = ["windyAPI designed by Bernie."]
 sheet.append(copyright)
 
 #輸出

@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "express": "^4.17.3",
+    "python-shell": "^3.0.1"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "buggy",
+  "description": "One of my school classes need me to fetch some information from windy and taipower.com, so I made an automatic fetch program.",
+  "version": "1.0.0",
+  "main": "Server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Unforgettableeternalproject/Buggy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Unforgettableeternalproject/Buggy/issues"
+  },
+  "homepage": "https://github.com/Unforgettableeternalproject/Buggy#readme"
+}
