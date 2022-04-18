@@ -2,7 +2,7 @@
  True,
  False,
  True,
- 'C:\\Users\\wishingsoft\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PyInstaller\\bootloader\\images\\icon-console.ico',
+ 'icon.ico',
  None,
  False,
  False,
@@ -49,7 +49,7 @@
  [],
  False,
  False,
- 1650249223,
+ 1650284999,
  [('run.exe',
    'C:\\Users\\wishingsoft\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit\\run.exe',
    'EXECUTABLE')])
