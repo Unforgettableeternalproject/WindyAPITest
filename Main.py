@@ -2,7 +2,9 @@ import openpyxl
 import Functions.Windy as Windy
 import Functions.Electicity as Electicity
 import os
-import time
+from time import strftime
+from time import localtime
+from time import sleep
 
 #初始化
 files = []
@@ -36,7 +38,7 @@ while True:
     file = []
     
     #時間
-    date = time.strftime('%m/%d %H:%M', time.localtime())
+    date = strftime('%m/%d %H:%M', localtime())
     file.append(date)
 
     #發電量
@@ -54,14 +56,14 @@ while True:
     files.append(file)
     
     #告知主控端
-    runtime = int(time.strftime('%H', time.localtime()))
+    runtime = int(strftime('%H', localtime()))
     cycle -= 1
     index += 1
-    print("Current Time: " + time.strftime('%Y/%m/%d %H:%M:%S', time.localtime()) + f"\nFetching Operation Had Done {index} Time(s).\n\n")
+    print("Current Time: " + strftime('%Y/%m/%d %H:%M:%S', localtime()) + f"\nFetching Operation Had Done {index} Time(s).\n\n")
     if(cycle == 0): break;
 
     #等待
-    time.sleep(gap)
+    sleep(gap)
 
 basepath = os.path.dirname(os.path.realpath(__file__))
 
@@ -88,7 +90,7 @@ try:
     wb.save(excelpath)
     print("Saving process compeleted.")
 except Exception as e:
-    excelpath = os.path.join(basepath, 'Instance', f"{time.strftime('%m_%d-%H_%M', time.localtime())}.xlsx")
+    excelpath = os.path.join(basepath, 'Instance', f"{strftime('%m_%d-%H_%M', localtime())}.xlsx")
     wb.save(excelpath)
     print(f"Error occured when saving, backup saved into {excelpath} instead.")
 

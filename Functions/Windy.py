@@ -1,19 +1,20 @@
-import requests, math
+from requests import post
+import math
 
 
 class wind:
     def __init__(self):
         pass
-    
+
     def fetch(self):
-        self.data = {"lat": 23.38,
-                    "lon": 120.08,
+        self.data = {"lat": 24.3,
+                    "lon": 120.54,
                     "model": "gfs",
                     "parameters": ["wind"],
                     "levels": ["950h"],
                     "key": "JdhDvmUgYdlabcxz9fzobkQDNGc4MbMz"}
         self.header = {"Content-Type" :"application/json"}
-        self.s = requests.post("https://api.windy.com/api/point-forecast/v2", json = self.data, headers = self.header)
+        self.s = post("https://api.windy.com/api/point-forecast/v2", json = self.data, headers = self.header)
         return self.s.text
 
     def optimize(self, s):
